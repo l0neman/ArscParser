@@ -1,0 +1,1 @@
+Basic code for parsing Android Arsc files (resource.arsc).
