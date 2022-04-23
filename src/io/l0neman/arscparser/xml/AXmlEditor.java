@@ -89,6 +89,6 @@ class AXmlEditor {
 
   /** 输出 xml 文档 */
   String print() {
-    return xmlBuilder.toString();
+    return xmlBuilder.toString().trim();
   }
 }

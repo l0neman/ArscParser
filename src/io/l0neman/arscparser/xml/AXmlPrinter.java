@@ -387,10 +387,8 @@ public class AXmlPrinter {
       }
     }
 
-    if (XML_PRINT) {
-      System.out.println();
+    if (XML_PRINT)
       System.out.println(aXmlEditor.print());
-    }
   }
 
   private static void closeQuietly(Closeable closeable) {

@@ -75,6 +75,9 @@ public class ArscDrawableParser {
     final long tableEntryIndex = tableTypeIndex + tableType.entriesStart;
 
     for (int i = 0; i < offsetArray.length; i++) {
+      if (offsetArray[i] == -1)
+        continue;
+
       final long entryIndex = offsetArray[i] + tableEntryIndex;
       final ResTableEntry tableEntry = objectInput.read(ResTableEntry.class, entryIndex);
 
