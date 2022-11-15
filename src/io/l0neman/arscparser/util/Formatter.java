@@ -1,5 +1,10 @@
 package io.l0neman.arscparser.util;
 
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 public class Formatter {
   public static String toHex(byte[] b) {
     StringBuilder stringBuilder = new StringBuilder("0x");
@@ -30,16 +35,7 @@ public class Formatter {
         };
   }
 
-  public static String trim(String str) {
-    final char[] chars = str.toCharArray();
-    int i = 0;
-    int j = 0;
-    while (j < chars.length) {
-      if (chars[j] != 0) {
-        chars[i++] = chars[j];
-      }
-      j++;
-    }
-    return new String(chars, 0, i);
+  public static String toUtf16String(byte[] bytes) {
+    return new String(bytes, 0, bytes.length, StandardCharsets.UTF_16LE);
   }
 }

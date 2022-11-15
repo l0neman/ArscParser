@@ -51,7 +51,7 @@ public class ResTablePackage implements Struct {
   /** Package ID */
   @FieldOrder(n = 1) public int id;
   /** Package Name */
-  @FieldOrder(n = 2) public char[] name = new char[128];
+  @FieldOrder(n = 2) public byte[] name = new byte[256];
   /**
    * 类型字符串资源池相对头部的偏移位置。
    */
@@ -75,7 +75,7 @@ public class ResTablePackage implements Struct {
         "{" +
             "header=" + header +
             ", id=" + Formatter.toHex(Formatter.fromInt(id, false)) +
-            ", name=" + Formatter.trim(new String(name)) +
+            ", name=" + Formatter.toUtf16String(name) +
             ", typeStrings=" + typeStrings +
             ", lastPublicType=" + lastPublicType +
             ", keyStrings=" + keyStrings +
@@ -85,7 +85,7 @@ public class ResTablePackage implements Struct {
         "ResTablePackage{" +
             "header=" + header +
             ", id=" + id +
-            ", name=" + Formatter.trim(new String(name)) +
+            ", name=" + Formatter.toUtf16String(name) +
             ", typeStrings=" + typeStrings +
             ", lastPublicType=" + lastPublicType +
             ", keyStrings=" + keyStrings +
