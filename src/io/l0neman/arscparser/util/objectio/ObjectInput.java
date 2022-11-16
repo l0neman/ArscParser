@@ -22,18 +22,25 @@ public class ObjectInput implements Closeable {
   private ByteOrder byteOrder;
   private final FileChannel inputChannel;
   private final long size;
+  private final String fileName;
 
   /*
     构建类内部成员列表。
    */
-  public ObjectInput(String file) throws IOException {
-    inputChannel = new FileInputStream(file).getChannel();
+  public ObjectInput(String fileName, boolean bigEndian) throws IOException {
+    this(fileName);
+    this.byteOrder = bigEndian ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN;
+  }
+
+  public ObjectInput(String fileName) throws IOException {
+    this.fileName = fileName;
+    FileInputStream fis = new FileInputStream(fileName);
+    inputChannel = fis.getChannel();
     size = inputChannel.size();
   }
 
-  public ObjectInput(String file, boolean bigEndian) throws IOException {
-    this(file);
-    this.byteOrder = bigEndian ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN;
+  public String getFileName() {
+    return fileName;
   }
 
   @SuppressWarnings("unchecked")

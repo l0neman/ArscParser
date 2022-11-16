@@ -1,9 +1,11 @@
 package io.l0neman.arscparser;
 
+import io.l0neman.arscparser.core.ArscPackageWriter;
 import io.l0neman.arscparser.core.ArscParser;
 import io.l0neman.arscparser.xml.AXmlPrinter;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class Main {
 
@@ -19,7 +21,11 @@ public class Main {
   private static void parseArscFile() {
     try {
       ArscParser arscParser = new ArscParser();
-      arscParser.parse("./file/com.muh2.icon/resources.arsc");
+      arscParser.parse("./file/resources_test.arsc");
+
+      ArscPackageWriter writer = new ArscPackageWriter();
+      writer.setPackageName("ICON.PACK.PACKAGE.NAME");
+      writer.write("./file/resources0.arsc", "./file/resources1.arsc");
     } catch (IOException e) {
       e.printStackTrace();
     }
